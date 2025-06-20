@@ -1,0 +1,57 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #2d3e50;
+    color: #fff;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+.menu {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 2rem;
+}
+.menu-item {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+.menu-item:last-child {
+    border-bottom: none;
+}
+.menu-item img.dish-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.menu-item h2 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1.3rem;
+    color: #2d3e50;
+}
+.menu-item p {
+    margin: 0.2rem 0 0.5rem 0;
+    color: #555;
+}
+.menu-item .price {
+    color: #27ae60;
+    font-weight: bold;
+}
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    color: #888;
+    background: #f1f1f1;
+    margin-top: 2rem;
+}
