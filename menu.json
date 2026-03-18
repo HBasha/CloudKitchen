@@ -1,0 +1,108 @@
+{
+  "kitchenName": "Basha’s Cloud Kitchen",
+  "isOpen": true,
+  "openTime": "10:00",
+  "closeTime": "16::30",
+  "headerMessage": "Freshly prepared meals. Order now!",
+  "whatsappNumber": "+919999999999",
+  
+"categories": [
+  {
+    "name": "Starters",
+    "items": [
+      {
+        "id": 101,
+        "name": "Chicken 65",
+        "description": "Crispy deep-fried spicy chicken starter.",
+        "price": 180,
+        "image": "images/chicken65.jpg",
+        "preOrderNote": "",
+        "available": true
+      },
+      {
+        "id": 102,
+        "name": "Veg Manchurian",
+        "description": "Crispy veg balls tossed in Indo-Chinese sauce.",
+        "price": 140,
+        "image": "images/veg-manchurian.jpg",
+        "preOrderNote": "",
+        "available": true
+      }
+    ]
+  },
+
+  {
+    "name": "Main Course",
+    "items": [
+      {
+        "id": 201,
+        "name": "Butter Chicken",
+        "description": "Rich and creamy tomato-based gravy.",
+        "price": 260,
+        "image": "images/butter-chicken.jpg",
+        "preOrderNote": "",
+        "available": true
+      },
+      {
+        "id": 202,
+        "name": "Paneer Tikka Masala",
+        "description": "Paneer cubes cooked in a spicy gravy.",
+        "price": 220,
+        "image": "images/paneer-masala.jpg",
+        "preOrderNote": "",
+        "available": true
+      }
+    ]
+  },
+
+  {
+    "name": "Breakfast",
+    "items": [
+      {
+        "id": 301,
+        "name": "Masala Dosa",
+        "description": "Crispy dosa with potato filling.",
+        "price": 80,
+        "image": "images/masala-dosa.jpg",
+        "preOrderNote": "",
+        "available": true
+      },
+      {
+        "id": 302,
+        "name": "Idli Sambar",
+        "description": "Soft idlis with flavorful sambar.",
+        "price": 60,
+        "image": "images/idli-sambar.jpg",
+        "preOrderNote": "",
+        "available": false
+      }
+    ]
+  },
+
+  {
+    "name": "Desserts",
+    "available": false,
+    "items": [
+      {
+        "id": 401,
+        "name": "Gulab Jamun",
+        "description": "Soft, sweet milk-solid dumplings.",
+        "price": 70,
+        "image": "images/gulab-jamun.jpg",
+        "preOrderNote": "",
+        "available": true
+      },
+      {
+        "id": 402,
+        "name": "Ice Cream",
+        "description": "Two scoops of vanilla ice cream.",
+        "price": 80,
+        "image": "images/ice-cream.jpg",
+        "preOrderNote": "",
+        "available": true
+      }
+    ]
+  }
+]
+
+}
