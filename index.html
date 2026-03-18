@@ -1,26 +1,29 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='UTF-8' />
+  <meta charset='UTF-8'>
   <title>Cloud Kitchen Menu</title>
   <script src='https://cdn.tailwindcss.com'></script>
-  <style>
-    .unavailable { opacity:0.4; filter:grayscale(100%); pointer-events:none; }
-  </style>
 </head>
 <body class='bg-gray-100 min-h-screen p-4'>
+
   <div class='text-center mb-6'>
     <h1 id='kitchenName' class='text-3xl font-bold'></h1>
-    <p id='headerMessage' class='text-gray-600'></p>
-    <p id='closedBanner' class='text-red-600 text-xl font-semibold mt-4 hidden'>
-      We are currently closed. Please check back later.
-    </p>
+    <p id='headerMessage' class='text-gray-600 text-lg'></p>
+    <p id='closedBanner' class='text-red-600 text-xl font-semibold mt-4 hidden'>We are currently closed.</p>
   </div>
+
   <div class='max-w-xl mx-auto mb-6'>
-    <input id='searchBox' type='text' placeholder='Search for a dish...' class='w-full p-3 border rounded-xl shadow-sm'/>
+    <input id='searchBox' type='text' placeholder='Search...' class='w-full p-4 text-lg border rounded-2xl shadow'>
   </div>
-  <div id='categoryTabs' class='flex gap-3 justify-center mb-6 flex-wrap'></div>
-  <div id='menuContainer' class='grid grid-cols-1 md:grid-cols-3 gap-6'></div>
+
+  <div id='categoryTabs' class='flex flex-wrap gap-3 justify-center mb-6'></div>
+
+  <div class='max-w-xl mx-auto'>
+    <div id='menuContainer' class='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'></div>
+  </div>
+
   <script src='utils.js'></script>
   <script src='script.js'></script>
 </body>
