@@ -1,12 +1,46 @@
 {
-  "kitchenName": "Basha’s Cloud Kitchen",
+  "kitchenName": "Yasmin’s Cloud Kitchen",
   "isOpen": true,
-  "openTime": "10:00",
-  "closeTime": "16::30",
+  "openTime": "00:00",
+  "closeTime": "23:59",
   "headerMessage": "Freshly prepared meals. Order now!",
-  "whatsappNumber": "+919999999999",
+  "whatsappNumber": "+919900933814",
   
 "categories": [
+  
+{
+  "name": "All Day Bites",
+  "items": [
+    {
+      "id": 701,
+      "name": "Bread Omelet",
+      "description": "Toasted bread layered with a fluffy egg omelet.",
+      "price": 50,
+      "image": "images/bread-omelet.jpg",
+      "preOrderNote": "",
+      "available": true
+    },
+    {
+      "id": 702,
+      "name": "Poha",
+      "description": "Light, freshly prepared flattened rice with mild seasoning.",
+      "price": 40,
+      "image": "images/poha.jpg",
+      "preOrderNote": "",
+      "available": true
+    },
+    {
+      "id": 703,
+      "name": "Oats Omelet",
+      "description": "Healthy oat‑based omelet cooked with veggies.",
+      "price": 60,
+      "image": "images/oats-omelet.jpg",
+      "preOrderNote": "",
+      "available": true
+    }
+  ]
+}
+,
   {
     "name": "Starters",
     "items": [
