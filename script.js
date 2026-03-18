@@ -42,14 +42,16 @@ function renderMenu() {
       const card = document.createElement('div');
       const available = item.available && isOpen;
 
-      card.className = `menu-card bg-white rounded-xl shadow-md ${!available ? 'opacity-50' : ''} flex flex-col`;
+      card.className = `menu-card bg-white shadow-sm ${!available ? 'opacity-50' : ''}`;
 
       card.innerHTML = `
-        <img src='${item.image}' alt='${item.name}' class='w-full object-cover rounded-lg'>
-        <h2 class='mt-3 font-semibold tracking-wide'>${item.name}</h2>
-        <p class='text-gray-600 leading-relaxed mt-1 flex-grow'>${item.description}</p>
-        <p class='mt-2 font-bold price'>₹${item.price}</p>
-        ${available ? `<a href='${createWhatsAppLink(fullData.whatsappNumber, item.name)}' target='_blank' class='block mt-3'><button class='order-btn w-full bg-green-600 text-white rounded-lg font-medium'>Order on WhatsApp</button></a>` : `<p class='text-red-600 font-semibold mt-3'>Unavailable</p>`}
+        <img src='${item.image}' alt='${item.name}' class='object-cover'>
+        <div class='card-content'>
+          <h2>${item.name}</h2>
+          <p>${item.description}</p>
+          <p class='price'>₹${item.price}</p>
+          ${available ? `<a href='${createWhatsAppLink(fullData.whatsappNumber, item.name)}' target='_blank' class='block'><button class='order-btn bg-green-600 text-white'>Order</button></a>` : `<p class='text-red-600 text-xs font-semibold'>Unavailable</p>`}
+        </div>
       `;
 
       container.appendChild(card);
