@@ -42,6 +42,19 @@
 }
 ,
   {
+      "name": "Juices",
+      "items": [
+        {
+          "id": 501,
+          "name": "Lemonade",
+          "description": "Fresh, refreshing homemade lemonade with a perfect blend of sweet and tangy.",
+          "price": 60,
+          "image": "images/lemonade.jpg",
+          "available": true
+        }
+      ]
+    },
+  {
     "name": "Starters",
     "items": [
       {
