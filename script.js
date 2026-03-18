@@ -16,15 +16,16 @@ fetch('menu.json').then(r => r.json()).then(data => {
 
 function renderCategories(categories) {
   const tabs = document.getElementById('categoryTabs');
-  tabs.innerHTML = `<button class='category-btn px-3 py-2 md:px-5 md:py-2 bg-blue-600 text-white rounded-full' onclick="changeCategory('All')">All</button>`;
+  tabs.innerHTML = `<button class='category-btn px-3 py-2 md:px-5 md:py-2 ${selectedCategory === 'All' ? 'bg-blue-600 text-white' : 'bg-gray-200'} rounded-full' onclick="changeCategory('All')">All</button>`;
 
   categories.forEach(cat => {
-    tabs.innerHTML += `<button class='category-btn px-3 py-2 md:px-5 md:py-2 bg-gray-200 rounded-full' onclick="changeCategory('${cat.name}')">${cat.name}</button>`;
+    tabs.innerHTML += `<button class='category-btn px-3 py-2 md:px-5 md:py-2 ${selectedCategory === cat.name ? 'bg-blue-600 text-white' : 'bg-gray-200'} rounded-full' onclick="changeCategory('${cat.name}')">${cat.name}</button>`;
   });
 }
 
 function changeCategory(cat) {
   selectedCategory = cat;
+  renderCategories(fullData.categories);
   renderMenu();
 }
 
