@@ -5,6 +5,11 @@
   <meta charset='UTF-8'>
   <title>Cloud Kitchen Menu</title>
   <script src='https://cdn.tailwindcss.com'></script>
+  <style>
+    @media (max-width: 1024px) {
+      #menuContainer { grid-template-columns: 1fr !important; }
+    }
+  </style>
 </head>
 <body class='bg-gray-100 min-h-screen p-4'>
 
@@ -18,10 +23,10 @@
     <input id='searchBox' type='text' placeholder='Search...' class='w-full p-4 text-lg border rounded-2xl shadow'>
   </div>
 
-  <div id='categoryTabs' class='flex flex-wrap gap-3 justify-center mb-6'></div>
+  <div id='categoryTabs' class='flex flex-col gap-3 mb-6'></div>
 
   <div class='max-w-xl mx-auto'>
-    <div id='menuContainer' class='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'></div>
+    <div id='menuContainer' class='grid grid-cols-1 gap-6'></div>
   </div>
 
   <script src='utils.js'></script>
