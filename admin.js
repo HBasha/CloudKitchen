@@ -1,19 +1,31 @@
 let menuData = null;
 
-fetch('menu.json')
-  .then(r => r.json())
-  .then(data => {
-    menuData = JSON.parse(JSON.stringify(data)); // deep copy
+function loadSourceData() {
+  const saved = localStorage.getItem('menuData');
+  if (saved) {
+    menuData = JSON.parse(saved);
     populateForm();
     renderCategories();
-  });
+    return;
+  }
+
+  fetch('menu.json')
+    .then(r => r.json())
+    .then(data => {
+      menuData = JSON.parse(JSON.stringify(data)); // deep copy
+      populateForm();
+      renderCategories();
+    });
+}
+
+loadSourceData();
 
 function populateForm() {
   document.getElementById('kitchenNameInput').value = menuData.kitchenName || '';
   document.getElementById('headerMessageInput').value = menuData.headerMessage || '';
   document.getElementById('openTimeInput').value = menuData.openTime || '';
   document.getElementById('closeTimeInput').value = menuData.closeTime || '';
-  document.getElementById('isOpenCheckbox').checked = menuData.isOpen || false;
+  document.getElementById('isOpenCheckbox').checked = menuData.isOpen === true;
 }
 
 function renderCategories() {
