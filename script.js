@@ -17,12 +17,24 @@ function initializeApp() {
   document.getElementById('kitchenName').innerText = fullData.kitchenName;
   document.getElementById('headerMessage').innerText = fullData.headerMessage;
 
-  const isOpenNow = fullData.isOpen && isWithinTime(fullData.openTime, fullData.closeTime);
-  if (!isOpenNow) document.getElementById('closedBanner').classList.remove('hidden');
+  updateClosedStatus();
 
   renderCategories(fullData.categories);
   renderMenu();
 }
+
+function updateClosedStatus() {
+  const isOpenNow = fullData.isOpen && isWithinTime(fullData.openTime, fullData.closeTime);
+  const banner = document.getElementById('closedBanner');
+  if (!isOpenNow) {
+    banner.classList.remove('hidden');
+  } else {
+    banner.classList.add('hidden');
+  }
+}
+
+// Update status every minute
+setInterval(updateClosedStatus, 60000);
 
 function renderCategories(categories) {
   const tabs = document.getElementById('categoryTabs');
