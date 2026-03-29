@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, viewport-fit=cover'>
+  <title>Cloud Kitchen Admin</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { -webkit-tap-highlight-color: transparent; }
+    
+    /* Mobile-first responsive text and spacing */
+    @media (max-width: 640px) {
+      #kitchenName { font-size: clamp(1.5rem, 5vw, 2rem); }
+      #headerMessage { font-size: clamp(0.875rem, 3vw, 1rem); }
+      #closedBanner { font-size: clamp(1rem, 3vw, 1.25rem); }
+      #searchBox { font-size: 16px; padding: 0.75rem; } /* 16px prevents zoom on iOS */
+      .category-btn { font-size: clamp(0.875rem, 2.5vw, 1rem); padding: 0.5rem 1rem; }
+      .menu-card { padding: 1rem; gap: 0.5rem; }
+      .menu-card img { height: 180px; }
+      .menu-card h2 { font-size: clamp(1.125rem, 4vw, 1.5rem); }
+      .menu-card p { font-size: clamp(0.875rem, 2.5vw, 1rem); }
+      .menu-card .price { font-size: clamp(1.125rem, 4vw, 1.5rem); }
+      .order-btn { padding: 0.75rem; font-size: clamp(0.875rem, 2.5vw, 1rem); }
+    }
+    
+    /* Tablet and desktop adjustments */
+    @media (min-width: 641px) {
+      #menuContainer { grid-template-columns: 1fr !important; width: 100% !important; }
+    }
+    
+    /* Hide scrollbar for horizontal scroll category pills */
+    .category-scroll::-webkit-scrollbar { display: none; }
+    .category-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* Ensure proper touch targets */
+    button { min-height: 44px; }
+    .order-btn { min-height: 48px; }
+  </style>
+</head>
+<body class='bg-gray-100 min-h-screen p-3 md:p-4'>
+
+  <div class='text-center mb-4 md:mb-6'>
+    <h1 class='font-bold text-2xl'>Admin Panel</h1>
+    <a href='index.html' class='text-sm text-blue-500 mt-2 inline-block'>Back to Menu</a>
+  </div>
+
+  <div class='max-w-4xl mx-auto'>
+    <div class='bg-white rounded-lg shadow-md p-4 mb-6'>
+      <h2 class='text-xl font-semibold mb-4'>Kitchen Settings</h2>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        <div>
+          <label class='block text-sm font-medium mb-1'>Kitchen Name</label>
+          <input type='text' id='kitchenNameInput' class='w-full p-2 border rounded'>
+        </div>
+        <div>
+          <label class='block text-sm font-medium mb-1'>Header Message</label>
+          <input type='text' id='headerMessageInput' class='w-full p-2 border rounded'>
+        </div>
+        <div>
+          <label class='block text-sm font-medium mb-1'>Open Time (HH:MM)</label>
+          <input type='text' id='openTimeInput' class='w-full p-2 border rounded' placeholder='09:00'>
+        </div>
+        <div>
+          <label class='block text-sm font-medium mb-1'>Close Time (HH:MM)</label>
+          <input type='text' id='closeTimeInput' class='w-full p-2 border rounded' placeholder='22:00'>
+        </div>
+        <div class='md:col-span-2'>
+          <label class='flex items-center'>
+            <input type='checkbox' id='isOpenCheckbox' class='mr-2'>
+            <span class='text-sm font-medium'>Kitchen is Open</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class='bg-white rounded-lg shadow-md p-4 mb-6'>
+      <h2 class='text-xl font-semibold mb-4'>Menu Categories</h2>
+      <div id='categoriesContainer'></div>
+      <button onclick='addCategory()' class='bg-blue-600 text-white px-4 py-2 rounded mt-4'>Add Category</button>
+    </div>
+
+    <div class='text-center'>
+      <button onclick='saveData()' class='bg-green-600 text-white px-6 py-3 rounded font-semibold'>Save & Download JSON</button>
+    </div>
+  </div>
+
+  <script src='admin.js'></script>
+</body>
+</html>

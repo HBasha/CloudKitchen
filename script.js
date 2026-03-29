@@ -2,17 +2,27 @@
 let fullData = null;
 let selectedCategory = 'All';
 
-fetch('menu.json').then(r => r.json()).then(data => {
-  fullData = data;
-  document.getElementById('kitchenName').innerText = data.kitchenName;
-  document.getElementById('headerMessage').innerText = data.headerMessage;
+const storedData = localStorage.getItem('menuData');
+if (storedData) {
+  fullData = JSON.parse(storedData);
+  initializeApp();
+} else {
+  fetch('menu.json').then(r => r.json()).then(data => {
+    fullData = data;
+    initializeApp();
+  });
+}
 
-  const isOpenNow = data.isOpen && isWithinTime(data.openTime, data.closeTime);
+function initializeApp() {
+  document.getElementById('kitchenName').innerText = fullData.kitchenName;
+  document.getElementById('headerMessage').innerText = fullData.headerMessage;
+
+  const isOpenNow = fullData.isOpen && isWithinTime(fullData.openTime, fullData.closeTime);
   if (!isOpenNow) document.getElementById('closedBanner').classList.remove('hidden');
 
-  renderCategories(data.categories);
+  renderCategories(fullData.categories);
   renderMenu();
-});
+}
 
 function renderCategories(categories) {
   const tabs = document.getElementById('categoryTabs');
