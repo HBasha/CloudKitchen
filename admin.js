@@ -112,15 +112,5 @@ function saveData() {
   // Save to localStorage
   localStorage.setItem('menuData', JSON.stringify(menuData));
 
-  // Download JSON
-  const dataStr = JSON.stringify(menuData, null, 2);
-  const dataBlob = new Blob([dataStr], { type: 'application/json' });
-  const url = URL.createObjectURL(dataBlob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'menu.json';
-  link.click();
-  URL.revokeObjectURL(url);
-
-  alert('Data saved locally and downloaded!');
+  alert('Data saved locally!');
 }
