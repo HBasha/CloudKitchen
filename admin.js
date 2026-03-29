@@ -60,7 +60,10 @@ function renderItems(catIndex) {
         <input type='text' value='${item.name}' onchange='updateItem(${catIndex}, ${itemIndex}, "name", this.value)' placeholder='Name' class='p-1 border rounded'>
         <input type='text' value='${item.description}' onchange='updateItem(${catIndex}, ${itemIndex}, "description", this.value)' placeholder='Description' class='p-1 border rounded'>
         <input type='number' value='${item.price}' onchange='updateItem(${catIndex}, ${itemIndex}, "price", this.value)' placeholder='Price' class='p-1 border rounded'>
-        <input type='text' value='${item.image}' onchange='updateItem(${catIndex}, ${itemIndex}, "image", this.value)' placeholder='Image URL' class='p-1 border rounded'>
+        <div class='flex flex-col'>
+          <input type='text' value='${item.image}' onchange='updateItem(${catIndex}, ${itemIndex}, "image", this.value)' placeholder='Image URL or Data URL' class='p-1 border rounded mb-1'>
+          <input type='file' accept='image/*' onchange='setItemImage(${catIndex}, ${itemIndex}, this.files[0])' class='p-1 border rounded'>
+        </div>
         <label class='flex items-center'>
           <input type='checkbox' ${item.available ? 'checked' : ''} onchange='updateItem(${catIndex}, ${itemIndex}, "available", this.checked)'>
           <span class='ml-2'>Available</span>
@@ -111,6 +114,16 @@ function updateItem(catIndex, itemIndex, field, value) {
 function deleteItem(catIndex, itemIndex) {
   menuData.categories[catIndex].items.splice(itemIndex, 1);
   renderItems(catIndex);
+}
+
+function setItemImage(catIndex, itemIndex, file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    menuData.categories[catIndex].items[itemIndex].image = event.target.result;
+    renderItems(catIndex);
+  };
+  reader.readAsDataURL(file);
 }
 
 function saveData() {
