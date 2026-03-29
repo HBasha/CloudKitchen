@@ -85,6 +85,29 @@
     </div>
   </div>
 
+  <!-- Item Modal -->
+  <div id='itemModal' class='fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50'>
+    <div class='bg-white rounded-lg shadow-lg w-full max-w-lg p-5'>
+      <h2 id='itemModalTitle' class='text-xl font-semibold mb-4'>Add / Edit Item</h2>
+      <div class='space-y-3'>
+        <input id='modalItemName' type='text' placeholder='Item Name' class='w-full border rounded p-2'>
+        <input id='modalItemDescription' type='text' placeholder='Description' class='w-full border rounded p-2'>
+        <input id='modalItemPrice' type='number' min='0' placeholder='Price' class='w-full border rounded p-2'>
+        <input id='modalItemImage' type='text' placeholder='Image URL or data URL' class='w-full border rounded p-2'>
+        <input id='modalItemUpload' type='file' accept='image/*' class='w-full border rounded p-2' onchange='handleModalImageUpload(event)'>
+        <label class='flex items-center'><input id='modalItemAvailable' type='checkbox' class='mr-2'> Available</label>
+      </div>
+      <div class='mt-4 flex justify-end gap-2'>
+        <button onclick='closeModal()' class='px-4 py-2 rounded border'>Cancel</button>
+        <button onclick='saveModalItem()' class='px-4 py-2 rounded bg-blue-600 text-white'>Save Item</button>
+      </div>
+    </div>
+  </div>
+
+  <script src='admin.js'></script>
+</body>
+  </div>
+
   <script src='admin.js'></script>
 </body>
 </html>

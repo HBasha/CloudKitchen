@@ -39,7 +39,7 @@ function renderCategories() {
         <input type='text' value='${cat.name}' onchange='updateCategoryName(${catIndex}, this.value)' class='font-semibold text-lg border-none bg-transparent'>
         <div>
           <button onclick='deleteCategory(${catIndex})' class='text-red-600 mr-2'>Delete</button>
-          <button onclick='addItem(${catIndex})' class='text-blue-600'>Add Item</button>
+          <button onclick='openItemModal(${catIndex}, null)' class='text-blue-600'>Add Item</button>
         </div>
       </div>
       <div id='items-${catIndex}'></div>
@@ -68,6 +68,7 @@ function renderItems(catIndex) {
           <input type='checkbox' ${item.available ? 'checked' : ''} onchange='updateItem(${catIndex}, ${itemIndex}, "available", this.checked)'>
           <span class='ml-2'>Available</span>
         </label>
+        <button onclick='openItemModal(${catIndex}, ${itemIndex})' class='text-blue-600 mr-2'>Edit Item</button>
         <button onclick='deleteItem(${catIndex}, ${itemIndex})' class='text-red-600'>Delete Item</button>
       </div>
     `;
@@ -95,35 +96,83 @@ function addCategory() {
 }
 
 function addItem(catIndex) {
-  const item = {
-    id: Date.now(),
-    name: '',
-    description: '',
-    price: 0,
-    image: '',
-    available: true
-  };
-  menuData.categories[catIndex].items.push(item);
-  renderItems(catIndex);
+  openItemModal(catIndex, null);
 }
 
 function updateItem(catIndex, itemIndex, field, value) {
   menuData.categories[catIndex].items[itemIndex][field] = value;
 }
 
+function openItemModal(catIndex, itemIndex) {
+  window.modalState = { catIndex, itemIndex };
+  const isEdit = itemIndex !== null;
+  document.getElementById('itemModalTitle').innerText = isEdit ? 'Edit Item' : 'Add Item';
+
+  if (isEdit) {
+    const item = menuData.categories[catIndex].items[itemIndex];
+    document.getElementById('modalItemName').value = item.name;
+    document.getElementById('modalItemDescription').value = item.description;
+    document.getElementById('modalItemPrice').value = item.price;
+    document.getElementById('modalItemImage').value = item.image;
+    document.getElementById('modalItemAvailable').checked = !!item.available;
+  } else {
+    document.getElementById('modalItemName').value = '';
+    document.getElementById('modalItemDescription').value = '';
+    document.getElementById('modalItemPrice').value = '';
+    document.getElementById('modalItemImage').value = '';
+    document.getElementById('modalItemAvailable').checked = true;
+  }
+
+  document.getElementById('modalItemUpload').value = '';
+  document.getElementById('itemModal').classList.remove('hidden');
+  document.getElementById('itemModal').classList.add('flex');
+}
+
+function closeModal() {
+  document.getElementById('itemModal').classList.add('hidden');
+  document.getElementById('itemModal').classList.remove('flex');
+}
+
+function handleModalImageUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('modalItemImage').value = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveModalItem() {
+  const catIndex = window.modalState.catIndex;
+  const itemIndex = window.modalState.itemIndex;
+  const newItem = {
+    id: itemIndex !== null ? menuData.categories[catIndex].items[itemIndex].id : Date.now(),
+    name: document.getElementById('modalItemName').value,
+    description: document.getElementById('modalItemDescription').value,
+    price: Number(document.getElementById('modalItemPrice').value) || 0,
+    image: document.getElementById('modalItemImage').value,
+    available: document.getElementById('modalItemAvailable').checked
+  };
+
+  if (!newItem.name.trim()) {
+    alert('Item name is required');
+    return;
+  }
+
+  if (itemIndex === null) {
+    menuData.categories[catIndex].items.push(newItem);
+  } else {
+    menuData.categories[catIndex].items[itemIndex] = newItem;
+  }
+
+  renderCategories();
+  closeModal();
+}
+
 function deleteItem(catIndex, itemIndex) {
   menuData.categories[catIndex].items.splice(itemIndex, 1);
   renderItems(catIndex);
-}
-
-function setItemImage(catIndex, itemIndex, file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(event) {
-    menuData.categories[catIndex].items[itemIndex].image = event.target.result;
-    renderItems(catIndex);
-  };
-  reader.readAsDataURL(file);
 }
 
 function saveData() {
